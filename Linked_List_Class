@@ -1,0 +1,193 @@
+class Linked_List:
+    class __Node:
+        def __init__(self, val):
+            self.val = val
+            self.next = None
+            self.prev = None
+            self.current = None
+    def __init__(self):
+        self.__header = self.__Node(None)
+        self.__trailer = self.__Node(None)
+        self.__header.next = self.__trailer
+        self.__trailer.prev = self.__header
+        self.__size = 0
+    def __len__(self):
+        return self.__size
+    def __iter__(self):
+        self.current = self.__header.next
+        return self
+    def __next__(self):
+        if self.current.next is None:
+            raise StopIteration
+        else:
+            result = self.current.val
+            self.current = self.current.next
+            return result
+    def append_element(self,val):
+        newest = Linked_List.__Node(val)
+        newest.next = self.__trailer
+        self.__trailer.prev.next = newest
+        newest.prev = self.__trailer.prev
+        self.__trailer.prev = newest
+        self.__size = self.__size + 1
+        return
+    def insert_element_at(self, val, index):
+        if index >= len(self) or index<0:
+            raise IndexError
+        newest = Linked_List.__Node(val)
+        if index == 0:
+            newest.prev = self.__header
+            after = self.__header.next
+            after.prev = newest
+            self.__header.next = newest
+            newest.next = after
+        else:
+            current = self.__header
+            for i in range(0, index):
+                current = current.next
+            current.next.prev = newest
+            newest.next = current.next
+            newest.prev = current
+            current.next = newest
+        self.__size = self.__size + 1
+        return
+    def remove_element_at(self, index):
+        if index >= len(self) or index < 0:
+            raise IndexError
+        if len(self) == 0:
+            return 
+        if index == 0:
+            elim = self.__header.next
+            elim.next.prev = self.__header
+            self.__header.next = elim.next
+        else:
+            current = self.__header
+            for i in range (0,index):
+                current = current.next
+            temp = current.next
+            elim = temp
+            after = current.next.next
+            after.prev = current
+            current.next = after
+        self.__size = self.__size - 1
+        return elim.val
+    def get_element_at(self, index): 
+        if index >= len(self) or index < 0:
+            raise IndexError 
+        elif index == 0:
+            return self.__header.next.val
+        else:
+            current = self.__header
+            for i in range (0,index):
+                current = current.next
+            current = current.next
+            return current.val
+    def rotate_left(self):
+        if len(self) == 0 or len(self) == 1:
+            return self
+        else:
+            moving_node = self.__header.next
+            self.__header.next = self.__header.next.next
+            moving_node.next.prev = self.__header
+            moving_node.next = self.__trailer
+            self.__trailer.prev.next = moving_node
+            moving_node.prev = self.__trailer.prev
+            self.__trailer.prev = moving_node
+        return   
+    def __str__(self):
+        ll = [  ]
+        if len(self) == 0:
+            return '[ ]'
+        else:
+            current = self.__header.next
+            while current is not self.__trailer:
+                ll.append(str(current.val))
+                current = current.next
+        return "[ " + ", ".join(ll) + " ]"
+if __name__ == '__main__':
+#create a full list
+    link = Linked_List()
+    link.append_element(5)
+    link.append_element(7)
+    link.append_element(22)
+    link.append_element(-4)
+    link.append_element(0)
+    link.append_element(9)
+    print("The initial list is: " + str(link))
+    #insert element with existing index
+    try:
+        link.insert_element_at(6,3)
+        print("List with inserted element: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")
+    #insert element without existing index
+    try:
+        link.insert_element_at(13,8)
+        print("List with inserted element: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")
+    #remove element at existing index
+    try:     
+        link.remove_element_at(3)
+        print("List with removed element: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")
+    #remove element at zero index
+    try:     
+        link.remove_element_at(0)
+        print("List with removed element: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")
+    #remove element at not existing index
+    try:     
+        link.remove_element_at(8)
+        print("List with removed element: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")
+    #get element at existing index
+    try:     
+        link.get_element_at(4)
+        print("Value at selected index: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")
+    #get element at not existing index
+    try:     
+        link.get_element_at(8)
+        print("Value at selected index: " + str(link))
+    except IndexError:
+        print("This index does not exist in list.")   
+    #rotate the list
+    link.rotate_left()
+    print("The list has rotated by one to the left: " + str(link))
+
+#create an empty list
+    ll = Linked_List()
+    print("The initial list is: " + str(ll))
+     #remove element at not existing index
+    try:     
+        ll.remove_element_at(8)
+        print("List with removed element: " + str(ll))
+    except IndexError:
+        print("This index does not exist in list.")
+    #get element at not existing index
+    try:     
+        ll.get_element_at(8)
+        print("Value at selected index: " + str(ll))
+    except IndexError:
+        print("This index does not exist in list.") 
+    #rotate an empty list
+    ll.rotate_left()
+    print("The list has rotated by one to the left: " + str(ll))
+
+#a list with one node
+    ll.append_element(5)
+    print("The initial list is: " + str(ll))
+    #rotate the list
+    ll.rotate_left()
+    print("The list has rotated by one to the left: " + str(ll))
+    #remove the element
+    try:     
+        ll.remove_element_at(0)
+        print("List with removed element: " + str(ll))
+    except IndexError:
+        print("This index does not exist in list.")
