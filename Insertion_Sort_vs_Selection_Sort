@@ -1,0 +1,200 @@
+import time 
+import random
+
+def insertion_sort(arr):
+    for k in range(1, len(arr)):
+        cur = arr[k]
+        j = k
+        while j > 0 and arr[j-1] > cur:
+            arr[j] = arr[j-1]
+            j = j - 1
+        arr[j] = cur
+    return arr
+
+def selection_sort(arr):
+    for index in range(0,(len(arr))): #for index = 0
+        min_num = arr[index]
+        idx = index
+        while idx < len(arr):
+            if arr[idx] < min_num:
+                min_num = arr[idx]
+                alias = min_num
+                arr[idx] = arr[index]
+                arr[index] = alias
+            idx = idx + 1
+    return arr
+
+def random_array(num_cells):
+    arr = []
+    for num in range(0, num_cells):
+        arr += [random.randint(0, 10000)]
+    return arr
+def copy_rand_array(rand_arr):
+    copy_arr = []
+    for num in range(0, len(rand_arr)):
+        copy_arr += [rand_arr[num]]
+    return copy_arr
+
+def increasing_array(num_cells):
+    arr = [] 
+    start_num = 1
+    for num in range(0, num_cells):
+        arr += [start_num]
+        start_num = start_num + 1
+    return arr
+
+def decreasing_array(num_cells):
+    arr = [] 
+    start_num = 10000
+    for num in range(0, num_cells):
+        arr += [start_num]
+        start_num = start_num - 1
+    return arr
+
+if __name__ == '__main__':
+    inc_1000 = increasing_array(1000)
+    inc_2500 = increasing_array(2500)
+    inc_5000 = increasing_array(5000)
+    inc_7500 = increasing_array(7500)
+    inc_10000 = increasing_array(10000)
+    dec_1000 = decreasing_array(1000)
+    dec_2500 = decreasing_array(2500)
+    dec_5000 = decreasing_array(5000)
+    dec_7500 = decreasing_array(7500)
+    dec_10000 = decreasing_array(10000)
+    rand_1000 = random_array(1000)
+    rand_2500 = random_array(2500)
+    rand_5000 = random_array(5000)
+    rand_7500 = random_array(7500)
+    rand_10000 = random_array(10000)
+    c_rand_1000 = copy_rand_array(rand_1000)
+    c_rand_2500 = copy_rand_array(rand_2500)
+    c_rand_5000 = copy_rand_array(rand_5000)
+    c_rand_7500 = copy_rand_array(rand_7500)
+    c_rand_10000 = copy_rand_array(rand_10000)
+    
+    start = time.process_time()
+    insertion_sort(inc_1000)
+    end = time.process_time()
+    print('One Thousand Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(inc_2500)
+    end = time.process_time()
+    print('Twenty Five Hundred Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(inc_5000)
+    end = time.process_time()
+    print('Five Thousand Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(inc_7500)
+    end = time.process_time()
+    print('Seventy Five Hundred Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(inc_10000)
+    end = time.process_time()
+    print('Ten Thousand Increasing Insertion: ' + '{:.6f}'.format(end-start))
+
+    start = time.process_time()
+    insertion_sort(dec_1000)
+    end = time.process_time()
+    print('One Thousand Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(dec_2500)
+    end = time.process_time()
+    print('Twenty Five Hundred Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(dec_5000)
+    end = time.process_time()
+    print('Five Thousand Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(dec_7500)
+    end = time.process_time()
+    print('Seventy Five Hundred Increasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(dec_10000)
+    end = time.process_time()
+    print('Ten Thousand Increasing Insertion: ' + '{:.6f}'.format(end-start))
+
+    start = time.process_time()
+    insertion_sort(rand_1000)
+    end = time.process_time()
+    print('One Thousand Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(rand_2500)
+    end = time.process_time()
+    print('Twenty Five Hundred Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(rand_5000)
+    end = time.process_time()
+    print('Five Thousand Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(rand_7500)
+    end = time.process_time()
+    print('Seventy Five Hundred Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    insertion_sort(rand_10000)
+    end = time.process_time()
+    print('Ten Thousand Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+
+    start = time.process_time()
+    selection_sort(inc_1000)
+    end = time.process_time()
+    print('One Thousand Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(inc_2500)
+    end = time.process_time()
+    print('Twenty Five Hundred Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(inc_5000)
+    end = time.process_time()
+    print('Five Thousand Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(inc_7500)
+    end = time.process_time()
+    print('Seventy Five Hundred Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(inc_10000)
+    end = time.process_time()
+    print('Ten Thousand Decreasing Insertion: ' + '{:.6f}'.format(end-start))
+
+    start = time.process_time()
+    selection_sort(dec_1000)
+    end = time.process_time()
+    print('One Thousand Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(dec_2500)
+    end = time.process_time()
+    print('Twenty Five Hundred Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(dec_5000)
+    end = time.process_time()
+    print('Five Thousand Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(dec_7500)
+    end = time.process_time()
+    print('Seventy Five Hundred Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(dec_10000)
+    end = time.process_time()
+    print('Ten Thousand Random Insertion: ' + '{:.6f}'.format(end-start))
+
+    start = time.process_time()
+    selection_sort(c_rand_1000)
+    end = time.process_time()
+    print('One Thousand Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(c_rand_2500)
+    end = time.process_time()
+    print('Twenty Five Hundred Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(c_rand_5000)
+    end = time.process_time()
+    print('Five Thousand Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(c_rand_7500)
+    end = time.process_time()
+    print('Seventy Five Hundred Random Insertion: ' + '{:.6f}'.format(end-start))
+    start = time.process_time()
+    selection_sort(c_rand_10000)
+    end = time.process_time()
+    print('Ten Thousand Random Insertion: ' + '{:.6f}'.format(end-start))
