@@ -1,0 +1,53 @@
+from Deque import Deque
+from Linked_List import Linked_List
+
+class Linked_List_Deque(Deque):
+
+  def __init__(self):
+    self.__list = Linked_List()
+
+  def __str__(self):
+    return str(self.__list)
+
+  def __len__(self):
+    return len(self.__list)
+  
+  # DO NOT CHANGE ANYTHING ABOVE THIS LINE
+  
+  def push_front(self, val):
+    if len(self.__list) == 0:
+      Linked_List.append_element(self.__list, val)
+    else:
+      Linked_List.insert_element_at(self.__list, val, 0)
+  
+  def pop_front(self):
+    if len(self.__list) == 0:
+      return None
+    else:
+      return Linked_List.remove_element_at(self.__list, 0)
+
+  def peek_front(self):
+    return Linked_List.get_element_at(self.__list, 0)
+
+  def push_back(self, val):
+    Linked_List.append_element(self.__list, val)
+  
+  def pop_back(self):
+    if len(self.__list) == 0:
+      return None
+    else:
+      return Linked_List.remove_element_at(self.__list, len(self)-1)
+
+  def peek_back(self):
+    return Linked_List.get_element_at(self.__list, len(self)-1)
+
+
+# Unit tests make the main section unneccessary.
+#if __name__ == '__main__':
+ # l = Linked_List_Deque()
+ # l.push_front(3)
+#  l.push_front(4)
+ # l.push_back(1)
+ # l.push_back(2)
+ # l.push_front(-1)
+ # print(str(l))
